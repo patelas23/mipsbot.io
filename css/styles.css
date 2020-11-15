@@ -3,6 +3,10 @@
   font-family: helvetica;
 }
 
+.header {
+  color: black
+}
+
 .menu {
   width: 10%;
   float: left;
