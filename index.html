@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="/css/styles.css">
+
     <title>Mips Bot AMA</title>
+
   </head>
 
   <body>
 
-    <div class="tab">
+    <div id="logs" class="logs">
 
     </div>
 
-    <h3>MIPS AMA Chatbot</h3>
 
-    <script>
 
-    const element = document.querySelector('.chatElement');
+    <h3 align="center">MIPS AMA Chatbot</h3>
+
+    <div class="chatWindow">
+
+    </div>
+
+    <script type="text/javascript">
+
+    const element = document.querySelector(".chatWindow");
 
     window.watsonAssistantChatOptions = {
         integrationID: "8c8c535e-98ff-4e9e-8c13-0fd4abed63a1", // The ID of this integration.
@@ -30,13 +39,22 @@
 
         onLoad: function(instance) {
 
+        instance.writeableElements.headerBottomElement.innerHTML = '<div lass="inChat" style="background-color:aquamarine;text-align:center">Beta Testing</div>';
+
           function sendhandler(obj) {
-            
-          }
+            document.getElementById("logs").innerHTML = "<strong>Sent: </strong>" + obj.data.input.text;    // print the question typed on "send"
+            }
+              instance.on({ type: "send", handler: sendhandler });
+
+          function receivehandler(event) {
+            document.getElementById("logs").innerHTML = "<strong>Received:</strong>" + event.data.output.generic[0].text;
+            }
+              instance.on({ type: "receive", handler: receivehandler});
 
           instance.render();
         }
       };
+
       setTimeout(function(){
         const t=document.createElement('script');
         t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";

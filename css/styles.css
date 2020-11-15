@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  font-family: helvetica;
+}
+
+.menu {
+  width: 10%;
+  float: left;
+}
+
+.chatWindow {
+  /* width: 80%;
+  margin: auto;
+   */
+  height: 600px;
+  width: 900px;
+  margin: auto;
+}
